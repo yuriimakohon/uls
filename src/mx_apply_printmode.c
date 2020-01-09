@@ -12,7 +12,7 @@ static void push_lfa(t_list **row, t_list *cur) {
 static void apply_printmode_flag_l(t_lfa *lfa) {
     t_list *row = NULL;
     t_list *cur = lfa->list_attr;
-    
+
     for (; cur != NULL; cur = cur->next) {
         row = NULL;
         push_lfa(&row, cur);

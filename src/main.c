@@ -28,14 +28,18 @@ int main(int argc, char **argv) {
 }
 
 static void reading_argv(char *argument, int argc, t_App *app) {
-    if (mx_strcmp(argument, "--") == 0) {
+    if (mx_strcmp(argument, "--") == 0
+        && !app->stop_flag) {
         app->stop_flag = true;
         app->is_any_flags++;
     }
-    else if (argument[0] == '-' && !app->stop_flag) {
+    else if (argument[0] == '-' && argument[1]
+        && !app->stop_flag) {
         mx_read_flags(argument, app);
         app->is_any_flags++;
     }
+    else
+        app->stop_flag = true;
     app->file_count = argc - app->is_any_flags;
 }
 

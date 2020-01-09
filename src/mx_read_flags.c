@@ -5,14 +5,14 @@ static void sort_flags(char *s, int *fl);
 static void sort_flags_2(char *s, int *fl);
 
 void mx_read_flags(char *s, t_App *app) {
-        mx_check_error_flag(&s[1]);
-        mx_output_flags(s, app->flags);
-        if (app->flags[m] == 1 && app->flags[C] == 1)
-            app->flags[C] = 0;
-        hiden_files_and_R(&s[1], app->flags);
-        sort_flags(&s[1], app->flags);
-        sort_flags_2(&s[1], app->flags);
-        mx_filter_flags(&s[1], app->flags);
+    mx_check_error_flag(&s[1]);
+    mx_output_flags(s, app->flags);
+    if (app->flags[m] == 1 && app->flags[C] == 1)
+        app->flags[C] = 0;
+    hiden_files_and_R(&s[1], app->flags);
+    sort_flags(&s[1], app->flags);
+    sort_flags_2(&s[1], app->flags);
+    mx_filter_flags(&s[1], app->flags);
 }
 
 static void hiden_files_and_R(char *s, int *fl) {

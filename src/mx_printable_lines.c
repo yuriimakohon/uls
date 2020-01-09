@@ -27,7 +27,7 @@ t_list *mx_printable_lines(t_list *head, int *a, t_lfa *lfa) {
     t_list *max = NULL;
     t_list *res = NULL;
 
-    for (; head != NULL; head = head->next) { 
+    for (; head != NULL; head = head->next) {
         t_list *ptr = head->data;
         char *str = NULL;
 

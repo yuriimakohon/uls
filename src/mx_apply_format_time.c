@@ -50,7 +50,7 @@ static char *shor_format(time_t t) {
 
 void mx_apply_format_time(t_list *row, t_list *cur, t_lfa *lfa) {
     time_t t = check_time(lfa, cur);
-    char *s = NULL;    
+    char *s = NULL;
 
     switch (lfa->command[time_format]) {
         case format_time_full:

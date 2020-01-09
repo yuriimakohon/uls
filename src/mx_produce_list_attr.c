@@ -1,7 +1,7 @@
 #include "uls.h"
 
 t_lfa *mx_produce_list_attr(char *dirname, t_App *app) {
-    t_lfa *lfa = mx_new_lfa(app, dirname);              
+    t_lfa *lfa = mx_new_lfa(app, dirname);
     DIR *d = opendir(dirname);
 
     if (d != NULL) {

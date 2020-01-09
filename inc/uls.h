@@ -1,6 +1,22 @@
 #ifndef ULS_H
 #define ULS_H
 
+#define MX_ISVTX 01000
+#define MX_ISGID 02000
+#define MX_ISUID 04000
+
+#define MX_IXURS 00100
+#define MX_IWURS 00200
+#define MX_IRURS 00400
+
+#define MX_IXOTH 00001
+#define MX_IWOTH 00002
+#define MX_IROTH 00004
+
+#define MX_IXGRP 00010
+#define MX_IWGRP 00020
+#define MX_IRGRP 00040
+
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
