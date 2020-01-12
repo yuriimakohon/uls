@@ -1,9 +1,12 @@
 NAME = uls
 
-NLIB = libmx/libmx.a
+SRCD = src
+INCD = inc
+OBJD = obj
+LBMXD = libmx
 
-HDR = uls.h
-
+LMBX = libmx.a
+INC = uls.h
 SRC = main.c \
 	mx_new_app.c \
 	mx_read_args.c \
@@ -43,27 +46,40 @@ SRC = main.c \
 	mx_major_minor.c \
 	mx_output_flags.c \
 
-OBJ = $(SRC:.c=.o)
+INCLUDE = -I $(LBMXD) \
+	-I $(INCD) \
 
-CFLAG = -std=c11 -Wall -Wextra -Wpedantic -Werror
+LBMXS = $(addprefix $(LBMXD)/, $(LMBX))
+INCS = $(addprefix $(INCD)/, $(INC))
+SRCS = $(addprefix $(SRCD)/, $(SRC))
+OBJS = $(addprefix $(OBJD)/, $(SRC:%.c=%.o))
+	
+CFLAGS = -std=c99 $(addprefix -W, all extra error pedantic)
 
 all: install clean
 
-install:
-	@cd libmx && make -f Makefile all
-	@cp $(addprefix src/, $(SRC)) $(addprefix inc/, $(HDR)) libmx/inc/libmx.h .
-	@clang $(CFLAG) -c $(SRC) -I $(HDR) 
-	@mkdir -p obj
-	@clang $(CFLAG) $(OBJ) $(NLIB) -o $(NAME)
-	@mv $(OBJ) ./obj
-	@rm -rf $(SRC) $(HDR) libmx.h
+install: $(LBMXS) $(NAME)
+
+$(LBMXS):
+	@make -sC $(LBMXD) install
+
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(LBMXS) $(OBJS) -o $@
+
+$(OBJD)/%.o: $(SRCD)/%.c $(INCS)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
+
+$(OBJS): | $(OBJD)
+
+$(OBJD):
+	@mkdir -p $@
 
 uninstall: clean
-	@cd libmx && make -f Makefile uninstall
-	@rm -rf $(NAME)
+	@make -sC $(LBMXD) $@
+	@rm -rf $(NAME)	
 
 clean:
-	@cd libmx && make -f Makefile clean
-	@rm -rf $(OBJ) ./obj
+	@make -sC $(LBMXD) $@
+	@rm -rf $(OBJD)
 
-reinstall: uninstall install
+reinstall: clean all

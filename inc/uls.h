@@ -33,7 +33,7 @@
 #include <sys/acl.h>
 #include <dirent.h>
 #include <errno.h>
-#include "libmx.h"
+#include "inc/libmx.h"
 
 typedef struct s_byte { // For flag -h
     int b;
@@ -156,7 +156,7 @@ typedef struct {
     bool is_dir;
     int *command;
     int *al;
-    bool print_permission_denied;
+    int print_permission_denied;
     bool new_line_needed;
 } t_lfa;
 

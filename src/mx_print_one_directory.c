@@ -39,9 +39,10 @@ static void print_recursion(char *dirname, t_App *app, t_lfa **lfa) {
     for (t_list *cur = (*lfa)->list_attr; cur != NULL; cur = cur->next) {
         if (((t_attr *)(cur->data))->is_dir) {
             char *fl = ((t_attr *)(cur->data))->original_name;
-            
+
             if (mx_is_dot_dotdot(fl))
                 continue;
+            printf("FILE: %s\n", ((t_attr *)(cur->data))->original_name);
             mx_print_one_directory(((t_attr *)(cur->data))->fullname, app);
         }
     }
