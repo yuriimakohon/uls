@@ -57,6 +57,7 @@ typedef struct s_attr {
     time_t c_time;
     time_t b_time;
     bool is_dir;
+    int not_dir;
     bool c_or_b;
     int major_num;
     int minor_num;
@@ -218,7 +219,7 @@ void mx_free_raw_lines(t_list **list);
 void mx_free_node_data(t_list *node);
 
 t_lfa *mx_produce_list_attr(char *dirname, t_App *app);
-t_attr *mx_make_attr_struct(char *fileName, t_lfa *lfa);
+t_attr *mx_make_attr_struct(char *fileName, t_lfa *lfa, int not_dir);
 char *mx_get_group(gid_t gid);
 char *mx_get_user(uid_t uid);
 char *mx_eleven_chars_code(struct stat sb, char *file);
@@ -242,7 +243,7 @@ void mx_header_dir(t_lfa *lfa);
 void mx_header_total(t_lfa *lfa);
 void mx_print_lines(t_lfa *lfa);
 t_list *mx_printable_lines(t_list *head, int *a, t_lfa *lfa);
-void mx_print_one_directory(char *name, t_App *app);
+void mx_print_one_directory(char *name, t_App *app, int nd);
 bool mx_print_args_file(t_App *app);
 void mx_print_args_error(t_App *app);
 void mx_print_args_directories(t_App *app);
@@ -265,6 +266,8 @@ bool mx_cmp_b_time_r(void *data1, void *data2);
 // utils
 bool mx_is_dot_dotdot(char *name);
 char *mx_majorminor(t_attr *attr);
+
+
 
 #endif
 

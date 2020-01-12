@@ -8,7 +8,10 @@ void mx_print_permission_denied(char *dirname, t_App *app) {
     mx_printerr(dirname);
     mx_printerr(":\nuls: ");
     mx_printerr(only_dirname);
-    mx_printerr(": Permission denied\n");
+    // mx_printerr(": Permission denied\n");
+    mx_printerr(": ");
+    mx_printerr(strerror(errno));
+    mx_printerr("\n");
     mx_strdel(&only_dirname);
 }
 

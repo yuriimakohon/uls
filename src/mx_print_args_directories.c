@@ -8,11 +8,11 @@ void mx_print_args_directories(t_App *app) {
     lfa = mx_new_lfa(app, "");
     for (t_list *cur = app->args_directories; cur != NULL; cur = cur->next) {
         mx_push_back(&(lfa->list_attr),
-            (void *)mx_make_attr_struct((char *)(cur->data), lfa));
+            (void *)mx_make_attr_struct((char *)(cur->data), lfa, 0));
     } // produce list of file attributes
     mx_apply_sort(lfa);
     for (t_list *cur = lfa->list_attr; cur != NULL; cur = cur->next) {
-        mx_print_one_directory(((t_attr *)(cur->data))->original_name, app);
+        mx_print_one_directory(((t_attr *)(cur->data))->original_name, app, 0);
     } // print contents of directories
     mx_free_lfa(&lfa);
 }

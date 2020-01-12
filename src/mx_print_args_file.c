@@ -11,7 +11,7 @@ bool mx_print_args_file(t_App *app) {
     lfa->command[header_total] = off;
     for (t_list *cur = app->args_files; cur != NULL; cur = cur->next) {
         mx_push_back(&(lfa->list_attr),
-            (void *)mx_make_attr_struct((char *)(cur->data), lfa));
+            (void *)mx_make_attr_struct((char *)(cur->data), lfa, 0));
     }
     mx_apply(lfa, app);
     mx_free_lfa(&lfa);

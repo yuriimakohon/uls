@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     free(app->al);
     free(app->flags);
     free(app);
-    system("leaks -q uls");
+    // system("leaks -q uls");
     return app->is_any_error;
 }
 

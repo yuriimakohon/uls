@@ -78,7 +78,7 @@ static void second_part(t_attr *attr_struct, struct stat sb, char *fullname) {
     }
 }
 
-t_attr *mx_make_attr_struct(char *fileName, t_lfa *lfa) {
+t_attr *mx_make_attr_struct(char *fileName, t_lfa *lfa, int not_dir) {
     struct stat sb;
     char *fullname = NULL;
     t_attr *attr_struct = malloc(sizeof(t_attr));
@@ -89,6 +89,7 @@ t_attr *mx_make_attr_struct(char *fileName, t_lfa *lfa) {
     second_part(attr_struct, sb, fullname);
     attr_struct->file_name = get_name(sb, fileName, fullname, lfa);
     attr_struct->original_name = mx_strdup(fileName);
+    attr_struct->not_dir = not_dir;
     if ((sb.st_mode & S_IFMT) == S_IFDIR)
         attr_struct->is_dir = true;
     else
