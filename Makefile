@@ -64,10 +64,10 @@ $(LBMXS):
 	@make -sC $(LBMXD) install
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(LBMXS) $(OBJS) -o $@
+	@clang $(CFLAGS) $(LBMXS) $(OBJS) -o $@
 
 $(OBJD)/%.o: $(SRCD)/%.c $(INCS)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
+	@clang $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 $(OBJS): | $(OBJD)
 

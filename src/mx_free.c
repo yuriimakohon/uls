@@ -30,7 +30,7 @@ void mx_free_list_attr(t_list **list) {
 void mx_free_list_strings(t_list *list) {
     if (list == NULL)
         return;
-    while(list != NULL) {
+    while (list != NULL) {
         mx_strdel((char **)&(list->data));
         mx_pop_front(&list);
     }
@@ -39,7 +39,7 @@ void mx_free_list_strings(t_list *list) {
 void mx_free_raw_lines(t_list **list) {
     if (list == NULL)
         return;
-    while(*list != NULL) {
+    while (*list != NULL) {
         if ((*list)->data != NULL)
             mx_free_list_strings((*list)->data);
         mx_pop_front(list);
